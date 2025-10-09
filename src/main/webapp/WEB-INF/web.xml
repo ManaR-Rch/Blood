@@ -11,4 +11,34 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
     
+    <!-- HomeServlet mapping -->
+    <servlet>
+        <servlet-name>HomeServlet</servlet-name>
+        <servlet-class>com.bloodbank.controller.HomeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HomeServlet</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    
+    <!-- DonneurServlet mapping -->
+    <servlet>
+        <servlet-name>DonneurServlet</servlet-name>
+        <servlet-class>com.bloodbank.controller.DonneurServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DonneurServlet</servlet-name>
+        <url-pattern>/donneurs</url-pattern>
+    </servlet-mapping>
+    
+    <!-- ReceveurServlet mapping -->
+    <servlet>
+        <servlet-name>ReceveurServlet</servlet-name>
+        <servlet-class>com.bloodbank.controller.ReceveurServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReceveurServlet</servlet-name>
+        <url-pattern>/receveurs</url-pattern>
+    </servlet-mapping>
+    
 </web-app>
