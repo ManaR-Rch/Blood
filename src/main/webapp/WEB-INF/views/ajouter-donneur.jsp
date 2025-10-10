@@ -11,6 +11,14 @@
     <p><a href="donneurs">Retour à la liste</a></p>
     <p><a href="home">Retour à l'accueil</a></p>
     
+    <% String erreur = (String) request.getAttribute("erreur"); %>
+    <% if (erreur != null && !erreur.isEmpty()) { %>
+        <div style="color: red; border: 1px solid red; padding: 10px; margin: 10px 0;">
+            <strong>Erreurs :</strong><br>
+            <%= erreur %>
+        </div>
+    <% } %>
+    
     <form method="post" action="donneurs">
         <table>
             <tr>
