@@ -64,7 +64,7 @@
     <!-- Modifier Donneur mapping -->
     <servlet>
         <servlet-name>ModifierDonneurServlet</servlet-name>
-        <servlet-class>com.bloodbank.controller.DonneurServlet</servlet-class>
+        <servlet-class>com.bloodbank.controller.ModifierDonneurServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ModifierDonneurServlet</servlet-name>
@@ -74,7 +74,7 @@
     <!-- Modifier Receveur mapping -->
     <servlet>
         <servlet-name>ModifierReceveurServlet</servlet-name>
-        <servlet-class>com.bloodbank.controller.ReceveurServlet</servlet-class>
+        <servlet-class>com.bloodbank.controller.ModifierReceveurServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ModifierReceveurServlet</servlet-name>
@@ -84,7 +84,7 @@
     <!-- Association pages/actions mapping (affichage et post) -->
     <servlet>
         <servlet-name>AssociationServlet</servlet-name>
-        <servlet-class>com.bloodbank.controller.ReceveurServlet</servlet-class>
+        <servlet-class>com.bloodbank.controller.AssociationServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AssociationServlet</servlet-name>
