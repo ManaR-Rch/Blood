@@ -46,6 +46,8 @@
                 <td>
                     <a href="modifier-donneur?id=<%= donneur.getId() %>">Modifier</a>
                     |
+                    <a href="supprimer-donneur?id=<%= donneur.getId() %>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce donneur ?')">Supprimer</a>
+                    |
                     <a href="association">Associer</a>
                 </td>
             </tr>

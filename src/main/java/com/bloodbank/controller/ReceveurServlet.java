@@ -11,12 +11,12 @@ import java.util.List;
 
 public class ReceveurServlet extends HttpServlet {
     
-    private ReceveurDAO receveurDAO;
+    //private ReceveurDAO receveurDAO;
     private ReceveurService receveurService;
     
     @Override
     public void init() throws ServletException {
-        receveurDAO = new ReceveurDAO();
+        // receveurDAO = new ReceveurDAO();
         receveurService = new ReceveurService();
     }
     
@@ -33,6 +33,7 @@ public class ReceveurServlet extends HttpServlet {
         }
         
         // Sinon, afficher la liste des receveurs
+        ReceveurDAO receveurDAO =new ReceveurDAO();
         List<Receveur> receveurs = receveurDAO.findAll();
         request.setAttribute("receveurs", receveurs);
         
@@ -42,6 +43,7 @@ public class ReceveurServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
+                ReceveurDAO receveurDAO = new ReceveurDAO();
         
         String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
@@ -95,14 +97,14 @@ public class ReceveurServlet extends HttpServlet {
                                         priorite, Receveur.Etat.EN_ATTENTE);
         
         receveurDAO.save(receveur);
-        
+        receveurDAO.close();
         response.sendRedirect("receveurs");
     }
     
-    @Override
-    public void destroy() {
-        if (receveurDAO != null) {
-            receveurDAO.close();
-        }
-    }
+
+    // public void destroy() {
+    //     if (receveurDAO != null) {
+    //         receveurDAO.close();
+    //     }
+    //}
 }

@@ -44,6 +44,8 @@
                 <td>
                     <a href="modifier-receveur?id=<%= receveur.getId() %>">Modifier</a>
                     |
+                    <a href="supprimer-receveur?id=<%= receveur.getId() %>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce receveur ?')">Supprimer</a>
+                    |
                     <a href="association">Associer</a>
                 </td>
             </tr>

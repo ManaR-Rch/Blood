@@ -11,12 +11,12 @@ import java.util.List;
 
 public class DonneurServlet extends HttpServlet {
     
-    //private DonneurDAO donneurDAO;
+    // private DonneurDAO donneurDAO;
     private DonneurService donneurService;
     
     @Override
     public void init() throws ServletException {
-        //donneurDAO = new DonneurDAO();
+        // donneurDAO = new DonneurDAO();
         donneurService = new DonneurService();
     }
     

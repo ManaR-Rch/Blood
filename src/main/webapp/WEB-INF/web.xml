@@ -95,4 +95,24 @@
         <url-pattern>/associer</url-pattern>
     </servlet-mapping>
     
+    <!-- Suppression Donneur mapping -->
+    <servlet>
+        <servlet-name>SupprimerDonneurServlet</servlet-name>
+        <servlet-class>com.bloodbank.controller.SupprimerDonneurServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SupprimerDonneurServlet</servlet-name>
+        <url-pattern>/supprimer-donneur</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Suppression Receveur mapping -->
+    <servlet>
+        <servlet-name>SupprimerReceveurServlet</servlet-name>
+        <servlet-class>com.bloodbank.controller.SupprimerReceveurServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SupprimerReceveurServlet</servlet-name>
+        <url-pattern>/supprimer-receveur</url-pattern>
+    </servlet-mapping>
+    
 </web-app>
