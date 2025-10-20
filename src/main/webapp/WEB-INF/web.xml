@@ -41,4 +41,58 @@
         <url-pattern>/receveurs</url-pattern>
     </servlet-mapping>
     
+    <!-- Ajouter Donneur mapping -->
+    <servlet>
+        <servlet-name>AjouterDonneurServlet</servlet-name>
+        <servlet-class>com.bloodbank.controller.DonneurServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AjouterDonneurServlet</servlet-name>
+        <url-pattern>/ajouter-donneur</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Ajouter Receveur mapping -->
+    <servlet>
+        <servlet-name>AjouterReceveurServlet</servlet-name>
+        <servlet-class>com.bloodbank.controller.ReceveurServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AjouterReceveurServlet</servlet-name>
+        <url-pattern>/ajouter-receveur</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Modifier Donneur mapping -->
+    <servlet>
+        <servlet-name>ModifierDonneurServlet</servlet-name>
+        <servlet-class>com.bloodbank.controller.DonneurServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModifierDonneurServlet</servlet-name>
+        <url-pattern>/modifier-donneur</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Modifier Receveur mapping -->
+    <servlet>
+        <servlet-name>ModifierReceveurServlet</servlet-name>
+        <servlet-class>com.bloodbank.controller.ReceveurServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModifierReceveurServlet</servlet-name>
+        <url-pattern>/modifier-receveur</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Association pages/actions mapping (affichage et post) -->
+    <servlet>
+        <servlet-name>AssociationServlet</servlet-name>
+        <servlet-class>com.bloodbank.controller.ReceveurServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AssociationServlet</servlet-name>
+        <url-pattern>/association</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AssociationServlet</servlet-name>
+        <url-pattern>/associer</url-pattern>
+    </servlet-mapping>
+    
 </web-app>

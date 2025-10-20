@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    
+    <display-name>Donate Blood Application</display-name>
+    
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    
+    <!-- HomeServlet mapping -->
+    <servlet>
+        <servlet-name>HomeServlet</servlet-name>
+        <servlet-class>com.bloodbank.controller.HomeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HomeServlet</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    
+    <!-- DonneurServlet mapping -->
+    <servlet>
+        <servlet-name>DonneurServlet</servlet-name>
+        <servlet-class>com.bloodbank.controller.DonneurServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DonneurServlet</servlet-name>
+        <url-pattern>/donneurs</url-pattern>
+    </servlet-mapping>
+    
+    <!-- ReceveurServlet mapping -->
+    <servlet>
+        <servlet-name>ReceveurServlet</servlet-name>
+        <servlet-class>com.bloodbank.controller.ReceveurServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReceveurServlet</servlet-name>
+        <url-pattern>/receveurs</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Ajouter Donneur mapping -->
+    <servlet>
+        <servlet-name>AjouterDonneurServlet</servlet-name>
+        <servlet-class>com.bloodbank.controller.DonneurServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AjouterDonneurServlet</servlet-name>
+        <url-pattern>/ajouter-donneur</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Ajouter Receveur mapping -->
+    <servlet>
+        <servlet-name>AjouterReceveurServlet</servlet-name>
+        <servlet-class>com.bloodbank.controller.ReceveurServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AjouterReceveurServlet</servlet-name>
+        <url-pattern>/ajouter-receveur</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Modifier Donneur mapping -->
+    <servlet>
+        <servlet-name>ModifierDonneurServlet</servlet-name>
+        <servlet-class>com.bloodbank.controller.DonneurServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModifierDonneurServlet</servlet-name>
+        <url-pattern>/modifier-donneur</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Modifier Receveur mapping -->
+    <servlet>
+        <servlet-name>ModifierReceveurServlet</servlet-name>
+        <servlet-class>com.bloodbank.controller.ReceveurServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModifierReceveurServlet</servlet-name>
+        <url-pattern>/modifier-receveur</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Association pages/actions mapping (affichage et post) -->
+    <servlet>
+        <servlet-name>AssociationServlet</servlet-name>
+        <servlet-class>com.bloodbank.controller.ReceveurServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AssociationServlet</servlet-name>
+        <url-pattern>/association</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AssociationServlet</servlet-name>
+        <url-pattern>/associer</url-pattern>
+    </servlet-mapping>
+    
+</web-app>

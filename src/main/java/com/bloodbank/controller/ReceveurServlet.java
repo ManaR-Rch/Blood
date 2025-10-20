@@ -24,6 +24,15 @@ public class ReceveurServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         
+        String requestURI = request.getRequestURI();
+        
+        // Si c'est une requête pour ajouter un receveur
+        if (requestURI.endsWith("/ajouter-receveur")) {
+            request.getRequestDispatcher("/WEB-INF/views/ajouter-receveur.jsp").forward(request, response);
+            return;
+        }
+        
+        // Sinon, afficher la liste des receveurs
         List<Receveur> receveurs = receveurDAO.findAll();
         request.setAttribute("receveurs", receveurs);
         

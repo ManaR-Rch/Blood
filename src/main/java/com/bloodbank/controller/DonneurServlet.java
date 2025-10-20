@@ -24,6 +24,15 @@ public class DonneurServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         
+        String requestURI = request.getRequestURI();
+        
+        // Si c'est une requête pour ajouter un donneur
+        if (requestURI.endsWith("/ajouter-donneur")) {
+            request.getRequestDispatcher("/WEB-INF/views/ajouter-donneur.jsp").forward(request, response);
+            return;
+        }
+        
+        // Sinon, afficher la liste des donneurs
         List<Donneur> donneurs = donneurDAO.findAll();
         request.setAttribute("donneurs", donneurs);
         
@@ -75,7 +84,7 @@ public class DonneurServlet extends HttpServlet {
         }
         
         // Validation du poids (doit être un nombre)
-        double poids;
+        double poids = 0;
         try {
             poids = Double.parseDouble(poidsStr);
             if (poids <= 0) {

@@ -16,8 +16,8 @@
     
     <h3>Actions Rapides</h3>
     <ul>
-        <li><a href="ajouter-donneur.jsp">Ajouter un Donneur</a></li>
-        <li><a href="ajouter-receveur.jsp">Ajouter un Receveur</a></li>
+        <li><a href="ajouter-donneur">Ajouter un Donneur</a></li>
+        <li><a href="ajouter-receveur">Ajouter un Receveur</a></li>
     </ul>
     
     <p>Application de gestion de don de sang - Version 1.0</p>

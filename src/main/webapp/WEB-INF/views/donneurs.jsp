@@ -10,7 +10,7 @@
 <body>
     <h1>Liste des Donneurs</h1>
     
-    <p><a href="ajouter-donneur.jsp">Ajouter un nouveau donneur</a></p>
+    <p><a href="ajouter-donneur">Ajouter un nouveau donneur</a></p>
     <p><a href="home">Retour à l'accueil</a></p>
     
     <h2>Donneurs enregistrés</h2>
@@ -30,6 +30,7 @@
                 <th>Poids</th>
                 <th>Sexe</th>
                 <th>Statut</th>
+                <th>Actions</th>
             </tr>
             <% for (Donneur donneur : donneurs) { %>
             <tr>
@@ -42,6 +43,11 @@
                 <td><%= donneur.getPoids() %> kg</td>
                 <td><%= donneur.getSexe() %></td>
                 <td><%= donneur.getStatutDisponibilite() %></td>
+                <td>
+                    <a href="modifier-donneur?id=<%= donneur.getId() %>">Modifier</a>
+                    |
+                    <a href="association">Associer</a>
+                </td>
             </tr>
             <% } %>
         </table>
