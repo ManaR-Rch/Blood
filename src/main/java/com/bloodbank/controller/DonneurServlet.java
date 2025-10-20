@@ -11,12 +11,12 @@ import java.util.List;
 
 public class DonneurServlet extends HttpServlet {
     
-    private DonneurDAO donneurDAO;
+    //private DonneurDAO donneurDAO;
     private DonneurService donneurService;
     
     @Override
     public void init() throws ServletException {
-        donneurDAO = new DonneurDAO();
+        //donneurDAO = new DonneurDAO();
         donneurService = new DonneurService();
     }
     
@@ -33,6 +33,7 @@ public class DonneurServlet extends HttpServlet {
         }
         
         // Sinon, afficher la liste des donneurs
+        DonneurDAO donneurDAO = new DonneurDAO();
         List<Donneur> donneurs = donneurDAO.findAll();
         request.setAttribute("donneurs", donneurs);
         
@@ -42,6 +43,7 @@ public class DonneurServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
+                DonneurDAO donneurDAO = new DonneurDAO();
         
         String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
@@ -98,6 +100,7 @@ public class DonneurServlet extends HttpServlet {
         if (!erreur.isEmpty()) {
             request.setAttribute("erreur", erreur);
             request.getRequestDispatcher("/WEB-INF/views/ajouter-donneur.jsp").forward(request, response);
+            donneurDAO.close();
             return;
         }
         
@@ -106,14 +109,15 @@ public class DonneurServlet extends HttpServlet {
                                      poids, sexe, Donneur.StatutDisponibilite.DISPONIBLE);
         
         donneurDAO.save(donneur);
+        donneurDAO.close();
         
         response.sendRedirect("donneurs");
     }
     
     @Override
     public void destroy() {
-        if (donneurDAO != null) {
-            donneurDAO.close();
-        }
+            // if (donneurDAO != null) {
+            //     donneurDAO.close();
+            // }
     }
 }
