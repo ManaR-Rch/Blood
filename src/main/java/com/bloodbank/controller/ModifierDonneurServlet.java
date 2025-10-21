@@ -52,6 +52,9 @@ public class ModifierDonneurServlet extends HttpServlet {
         String groupeSanguin = request.getParameter("groupeSanguin");
         String poidsStr = request.getParameter("poids");
         String sexe = request.getParameter("sexe");
+        // Nouveaux champs pour la mise à jour
+        String ageStr = request.getParameter("age"); 
+        String contreIndicationsStr = request.getParameter("contreIndications");
 
         String erreur = "";
 
@@ -69,7 +72,8 @@ public class ModifierDonneurServlet extends HttpServlet {
         if (groupeSanguin == null || groupeSanguin.trim().isEmpty()) erreur += "Le groupe sanguin est obligatoire.<br>";
         if (poidsStr == null || poidsStr.trim().isEmpty()) erreur += "Le poids est obligatoire.<br>";
         if (sexe == null || sexe.trim().isEmpty()) erreur += "Le sexe est obligatoire.<br>";
-
+        
+        // Validation et parsing du Poids
         double poids = 0;
         if (erreur.isEmpty()) {
             try {
@@ -80,6 +84,22 @@ public class ModifierDonneurServlet extends HttpServlet {
             } catch (NumberFormatException e) {
                 erreur += "Le poids doit être un nombre valide.<br>";
             }
+        }
+        
+        // Validation et parsing de l'Âge
+        Integer age = null;
+        if (ageStr != null && !ageStr.trim().isEmpty()) {
+            try {
+                age = Integer.parseInt(ageStr);
+            } catch (Exception e) {
+                erreur += "L'âge doit être un nombre valide.<br>";
+            }
+        }
+        
+        // Parsing des contre-indications
+        boolean contreIndications = false;
+        if ("true".equalsIgnoreCase(contreIndicationsStr)) {
+            contreIndications = true;
         }
 
         if (!erreur.isEmpty()) {
@@ -99,6 +119,7 @@ public class ModifierDonneurServlet extends HttpServlet {
             return;
         }
 
+        // Mise à jour des champs
         donneur.setNom(nom);
         donneur.setPrenom(prenom);
         donneur.setTelephone(telephone);
@@ -106,6 +127,9 @@ public class ModifierDonneurServlet extends HttpServlet {
         donneur.setGroupeSanguin(groupeSanguin);
         donneur.setPoids(poids);
         donneur.setSexe(sexe);
+        // Mise à jour des nouveaux champs
+        donneur.setAge(age);
+        donneur.setContreIndications(contreIndications);
 
         donneurDAO.update(donneur);
 
@@ -119,5 +143,3 @@ public class ModifierDonneurServlet extends HttpServlet {
         }
     }
 }
-
-
