@@ -8,6 +8,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.List;
+import java.util.Collections;
 
 public class ReceveurServlet extends HttpServlet {
     
@@ -35,6 +36,10 @@ public class ReceveurServlet extends HttpServlet {
         // Sinon, afficher la liste des receveurs
         ReceveurDAO receveurDAO =new ReceveurDAO();
         List<Receveur> receveurs = receveurDAO.findAll();
+        // Trier par priorité : CRITIQUE → URGENT → NORMAL (en inversant compareTo)
+        if (receveurs != null) {
+            Collections.sort(receveurs, (r1, r2) -> r2.getPriorite().compareTo(r1.getPriorite()));
+        }
         request.setAttribute("receveurs", receveurs);
         
         request.getRequestDispatcher("/WEB-INF/views/receveurs.jsp").forward(request, response);
@@ -98,6 +103,7 @@ public class ReceveurServlet extends HttpServlet {
         
         receveurDAO.save(receveur);
         receveurDAO.close();
+        request.getSession().setAttribute("message", "Receveur ajouté avec succès");
         response.sendRedirect("receveurs");
     }
     

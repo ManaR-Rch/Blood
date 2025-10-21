@@ -29,6 +29,7 @@
                 <th>Groupe Sanguin</th>
                 <th>Priorité</th>
                 <th>État</th>
+                <th>Nb Donneurs</th>
                 <th>Actions</th>
             </tr>
             <% for (Receveur receveur : receveurs) { %>
@@ -41,6 +42,7 @@
                 <td><%= receveur.getGroupeSanguin() %></td>
                 <td><%= receveur.getPriorite() %></td>
                 <td><%= receveur.getEtat() %></td>
+                <td><%= (receveur.getDonneursAssocies() != null) ? receveur.getDonneursAssocies().size() : 0 %></td>
                 <td>
                     <a href="modifier-receveur?id=<%= receveur.getId() %>">Modifier</a>
                     |

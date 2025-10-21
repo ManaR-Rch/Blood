@@ -124,9 +124,9 @@ public class AssociationServlet extends HttpServlet {
             return;
         }
 
-        // Success -> redirect to home with a success message
+        // Success -> redirect to donneurs with a success message
         request.getSession().setAttribute("message", "Association effectuée avec succès.");
-        response.sendRedirect("home");
+        response.sendRedirect("donneurs");
     }
 
     @Override

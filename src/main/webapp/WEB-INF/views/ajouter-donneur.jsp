@@ -58,6 +58,19 @@
                 <td><input type="number" id="poids" name="poids" step="0.1" min="30" max="200" required></td>
             </tr>
             <tr>
+                <td><label for="age">Âge :</label></td>
+                <td><input type="number" id="age" name="age" min="16" max="120" required></td>
+            </tr>
+            <tr>
+                <td><label for="contreIndications">Contre-indications médicales :</label></td>
+                <td>
+                    <select id="contreIndications" name="contreIndications" required>
+                        <option value="false">Non</option>
+                        <option value="true">Oui</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
                 <td><label for="sexe">Sexe :</label></td>
                 <td>
                     <select id="sexe" name="sexe" required>

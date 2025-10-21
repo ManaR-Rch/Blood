@@ -30,6 +30,7 @@
                 <th>Poids</th>
                 <th>Sexe</th>
                 <th>Statut</th>
+                <th>Receveur Associé</th>
                 <th>Actions</th>
             </tr>
             <% for (Donneur donneur : donneurs) { %>
@@ -43,6 +44,13 @@
                 <td><%= donneur.getPoids() %> kg</td>
                 <td><%= donneur.getSexe() %></td>
                 <td><%= donneur.getStatutDisponibilite() %></td>
+                <td>
+                    <% if (donneur.getReceveurAssocie() != null) { %>
+                        <%= donneur.getReceveurAssocie().getNom() %> <%= donneur.getReceveurAssocie().getPrenom() %>
+                    <% } else { %>
+                        Aucun
+                    <% } %>
+                </td>
                 <td>
                     <a href="modifier-donneur?id=<%= donneur.getId() %>">Modifier</a>
                     |

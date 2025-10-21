@@ -31,6 +31,12 @@ public class Donneur {
     @Column(name = "sexe")
     private String sexe;
     
+    @Column(name = "age")
+    private Integer age;
+
+    @Column(name = "contre_indications")
+    private boolean contreIndications;
+    
     @Enumerated(EnumType.STRING)
     @Column(name = "statut_disponibilite")
     private StatutDisponibilite statutDisponibilite;
@@ -129,6 +135,22 @@ public class Donneur {
     
     public void setStatutDisponibilite(StatutDisponibilite statutDisponibilite) {
         this.statutDisponibilite = statutDisponibilite;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public boolean getContreIndications() {
+        return contreIndications;
+    }
+
+    public void setContreIndications(boolean contreIndications) {
+        this.contreIndications = contreIndications;
     }
 
     public Receveur getReceveurAssocie() {

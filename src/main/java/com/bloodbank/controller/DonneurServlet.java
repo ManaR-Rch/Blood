@@ -50,8 +50,10 @@ public class DonneurServlet extends HttpServlet {
         String telephone = request.getParameter("telephone");
         String cin = request.getParameter("cin");
         String groupeSanguin = request.getParameter("groupeSanguin");
-        String poidsStr = request.getParameter("poids");
+    String poidsStr = request.getParameter("poids");
         String sexe = request.getParameter("sexe");
+    String ageStr = request.getParameter("age");
+    String contreIndicationsStr = request.getParameter("contreIndications");
         
         String erreur = "";
         
@@ -95,6 +97,20 @@ public class DonneurServlet extends HttpServlet {
         } catch (NumberFormatException e) {
             erreur += "Le poids doit être un nombre valide.<br>";
         }
+
+        Integer age = null;
+        try {
+            age = Integer.parseInt(ageStr);
+        } catch (Exception e) {
+            erreur += "L'âge doit être un nombre valide.<br>";
+        }
+
+        boolean contreIndications = false;
+        try {
+            contreIndications = Boolean.parseBoolean(contreIndicationsStr);
+        } catch (Exception e) {
+            // ignore, default false
+        }
         
         // Si erreur de validation du poids, renvoyer vers le formulaire
         if (!erreur.isEmpty()) {
@@ -107,11 +123,20 @@ public class DonneurServlet extends HttpServlet {
         // Créer et sauvegarder le donneur
         Donneur donneur = new Donneur(nom, prenom, telephone, cin, groupeSanguin, 
                                      poids, sexe, Donneur.StatutDisponibilite.DISPONIBLE);
+        donneur.setAge(age);
+        donneur.setContreIndications(contreIndications);
+        
+        // Vérifier l'éligibilité via le service
+        DonneurService donneurService = new DonneurService();
+        if (!donneurService.estEligible(donneur)) {
+            donneur.setStatutDisponibilite(Donneur.StatutDisponibilite.NON_ELIGIBLE);
+        }
         
         donneurDAO.save(donneur);
         donneurDAO.close();
         
-        response.sendRedirect("donneurs");
+    request.getSession().setAttribute("message", "Donneur ajouté avec succès");
+    response.sendRedirect("donneurs");
     }
     
     @Override

@@ -7,6 +7,13 @@
 </head>
 <body>
     <h1>Bienvenue sur Donate Blood</h1>
+    <% String message = (String) session.getAttribute("message"); %>
+    <% if (message != null) { %>
+        <div style="color: green; border: 1px solid green; padding: 10px; margin-bottom: 10px;">
+            <%= message %>
+        </div>
+        <% session.removeAttribute("message"); %>
+    <% } %>
     
     <h2>Menu Principal</h2>
     <ul>

@@ -42,6 +42,9 @@
                             <% } %>
                         <% } %>
                     </select>
+                    <% if (donneursDisponibles == null || donneursDisponibles.isEmpty()) { %>
+                        <p style="color: orange;">Aucun donneur disponible pour association</p>
+                    <% } %>
                 </td>
             </tr>
             <tr>
@@ -57,6 +60,9 @@
                             <% } %>
                         <% } %>
                     </select>
+                    <% if (receveursEnAttente == null || receveursEnAttente.isEmpty()) { %>
+                        <p style="color: orange;">Aucun receveur en attente</p>
+                    <% } %>
                 </td>
             </tr>
             <tr>
