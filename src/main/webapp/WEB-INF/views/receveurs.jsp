@@ -14,6 +14,7 @@
     <p><a href="home">Retour à l'accueil</a></p>
     
     <h2>Receveurs enregistrés</h2>
+    <p><em>Tri automatique : CRITIQUE → URGENT → NORMAL</em></p>
     
     <% 
     List<Receveur> receveurs = (List<Receveur>) request.getAttribute("receveurs");
