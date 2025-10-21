@@ -30,18 +30,38 @@ public class AssociationServlet extends HttpServlet {
 
         List<Donneur> donneursDisponibles = new ArrayList<>();
         List<Receveur> receveursEnAttente = new ArrayList<>();
+        CompatibiliteService compatService = new CompatibiliteService();
 
-        for (Donneur d : donneurDAO.findAll()) {
-            if (d.getStatutDisponibilite() == Donneur.StatutDisponibilite.DISPONIBLE) {
-                donneursDisponibles.add(d);
-            }
-        }
-
+        // Récupérer d'abord tous les receveurs en attente
         for (Receveur r : receveurDAO.findAll()) {
             if (r.getEtat() == Receveur.Etat.EN_ATTENTE) {
                 receveursEnAttente.add(r);
             }
         }
+
+        // Pour chaque donneur disponible, vérifier s'il est compatible avec au moins un receveur en attente
+        for (Donneur d : donneurDAO.findAll()) {
+            if (d.getStatutDisponibilite() == Donneur.StatutDisponibilite.DISPONIBLE) {
+                for (Receveur r : receveursEnAttente) {
+                    if (compatService.estCompatible(d.getGroupeSanguin(), r.getGroupeSanguin())) {
+                        donneursDisponibles.add(d);
+                        break; // une compatibilité suffit
+                    }
+                }
+            }
+        }
+
+        // Filtrer les receveurs pour ne garder que ceux compatibles avec au moins un donneur disponible
+        List<Receveur> receveursFiltres = new ArrayList<>();
+        for (Receveur r : receveursEnAttente) {
+            for (Donneur d : donneursDisponibles) {
+                if (compatService.estCompatible(d.getGroupeSanguin(), r.getGroupeSanguin())) {
+                    receveursFiltres.add(r);
+                    break;
+                }
+            }
+        }
+        receveursEnAttente = receveursFiltres;
 
         request.setAttribute("donneursDisponibles", donneursDisponibles);
         request.setAttribute("receveursEnAttente", receveursEnAttente);
