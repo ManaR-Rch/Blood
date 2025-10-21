@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
+<%@ page import="com.bloodbank.model.Donneur" %> <!DOCTYPE html>
 <html>
 <head>
     <title>Modifier un Donneur</title>
@@ -19,6 +19,10 @@
             <%= erreur %>
         </div>
     <% } %>
+
+    <% 
+        Donneur donneur = (Donneur) request.getAttribute("donneur");
+    %>
     
     <form method="post" action="modifier-donneur">
         <input type="hidden" name="id" value="${donneur.id}">

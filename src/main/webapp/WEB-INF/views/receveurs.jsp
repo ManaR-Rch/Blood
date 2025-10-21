@@ -82,8 +82,8 @@
     <p><em>Tri automatique : CRITIQUE → URGENT → NORMAL</em></p>
     
     <% 
-    List<Receveur> receveurs = (List<Receveur>) request.getAttribute("receveurs");
-    if (receveurs != null && !receveurs.isEmpty()) {
+   List<Receveur> listeReceveurs = (List<Receveur>) request.getAttribute("receveurs");
+    if (listeReceveurs != null && !listeReceveurs.isEmpty()) {
     %>
         <table border="1">
             <tr>
@@ -98,7 +98,7 @@
                 <th>Nb Donneurs</th>
                 <th>Actions</th>
             </tr>
-            <% for (Receveur receveur : receveurs) { %>
+            <% for (Receveur receveur : listeReceveurs) { %>
             <tr>
                 <td><%= receveur.getId() %></td>
                 <td><%= receveur.getNom() %></td>
