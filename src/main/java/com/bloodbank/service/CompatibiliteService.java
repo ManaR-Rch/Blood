@@ -27,10 +27,10 @@ public class CompatibiliteService {
             return false; // groupe inconnu => non compatible
         }
 
-n        // Receveur universel
+        // Receveur universel
         if ("AB+".equals(groupeReceveur)) return true;
 
-n        // Donneur universel
+        // Donneur universel
         if ("O-".equals(groupeDonneur)) return true;
 
         // Si donneur est Rh+ et receveur Rh- => incompatible
