@@ -1,46 +1,60 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <title>Ajouter un Receveur</title>
     <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .bg-blood-red { background-color: #dc2626; }
+        .hover-blood-red:hover { background-color: #b91c1c; }
+    </style>
 </head>
-<body>
-    <h1>Ajouter un nouveau Receveur</h1>
-    
-    <p><a href="receveurs">Retour à la liste</a></p>
-    <p><a href="home">Retour à l'accueil</a></p>
-    
-    <% String erreur = (String) request.getAttribute("erreur"); %>
-    <% if (erreur != null && !erreur.isEmpty()) { %>
-        <div style="color: red; border: 1px solid red; padding: 10px; margin: 10px 0;">
-            <strong>Erreurs :</strong><br>
-            <%= erreur %>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-3xl mx-auto bg-white p-6 rounded-xl shadow-lg">
+        <h1 class="text-3xl font-bold text-blood-red border-b pb-4 mb-6">
+            Ajouter un nouveau Receveur
+        </h1>
+        
+        <div class="mb-6 flex space-x-4">
+            <a href="receveurs" class="text-blue-600 hover:text-blue-800 font-medium">Retour à la liste</a>
+            <a href="home" class="text-gray-600 hover:text-gray-800 font-medium">Retour à l'accueil</a>
         </div>
-    <% } %>
-    
-    <form method="post" action="receveurs">
-        <table>
-            <tr>
-                <td><label for="nom">Nom :</label></td>
-                <td><input type="text" id="nom" name="nom" required></td>
-            </tr>
-            <tr>
-                <td><label for="prenom">Prénom :</label></td>
-                <td><input type="text" id="prenom" name="prenom" required></td>
-            </tr>
-            <tr>
-                <td><label for="telephone">Téléphone :</label></td>
-                <td><input type="text" id="telephone" name="telephone" required></td>
-            </tr>
-            <tr>
-                <td><label for="cin">CIN :</label></td>
-                <td><input type="text" id="cin" name="cin" required></td>
-            </tr>
-            <tr>
-                <td><label for="groupeSanguin">Groupe Sanguin :</label></td>
-                <td>
-                    <select id="groupeSanguin" name="groupeSanguin" required>
+        
+        <% String erreur = (String) request.getAttribute("erreur"); %>
+        <% if (erreur != null && !erreur.isEmpty()) { %>
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6" role="alert">
+                <strong class="font-bold">Erreurs :</strong>
+                <span class="block sm:inline"><%= erreur %></span>
+            </div>
+        <% } %>
+        
+        <form method="post" action="receveurs" class="space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                
+                <div class="col-span-1">
+                    <label for="nom" class="block text-sm font-medium text-gray-700">Nom :</label>
+                    <input type="text" id="nom" name="nom" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-red-500 focus:ring-red-500 p-2">
+                </div>
+                
+                <div class="col-span-1">
+                    <label for="prenom" class="block text-sm font-medium text-gray-700">Prénom :</label>
+                    <input type="text" id="prenom" name="prenom" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-red-500 focus:ring-red-500 p-2">
+                </div>
+
+                <div class="col-span-1">
+                    <label for="telephone" class="block text-sm font-medium text-gray-700">Téléphone :</label>
+                    <input type="text" id="telephone" name="telephone" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-red-500 focus:ring-red-500 p-2">
+                </div>
+
+                <div class="col-span-1">
+                    <label for="cin" class="block text-sm font-medium text-gray-700">CIN :</label>
+                    <input type="text" id="cin" name="cin" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-red-500 focus:ring-red-500 p-2">
+                </div>
+
+                <div class="col-span-1">
+                    <label for="groupeSanguin" class="block text-sm font-medium text-gray-700">Groupe Sanguin :</label>
+                    <select id="groupeSanguin" name="groupeSanguin" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-red-500 focus:ring-red-500 p-2">
                         <option value="">Sélectionner</option>
                         <option value="A+">A+</option>
                         <option value="A-">A-</option>
@@ -51,27 +65,24 @@
                         <option value="O+">O+</option>
                         <option value="O-">O-</option>
                     </select>
-                </td>
-            </tr>
-            <tr>
-                <td><label for="priorite">Priorité :</label></td>
-                <td>
-                    <select id="priorite" name="priorite" required>
+                </div>
+
+                <div class="col-span-1">
+                    <label for="priorite" class="block text-sm font-medium text-gray-700">Priorité :</label>
+                    <select id="priorite" name="priorite" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-red-500 focus:ring-red-500 p-2">
                         <option value="">Sélectionner</option>
                         <option value="NORMAL">Normal</option>
                         <option value="URGENT">Urgent</option>
                         <option value="CRITIQUE">Critique</option>
                     </select>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <input type="submit" value="Enregistrer le receveur">
-                    <input type="reset" value="Effacer">
-                </td>
-            </tr>
-        </table>
-    </form>
-    
+                </div>
+            </div>
+            
+            <div class="pt-5 flex justify-end space-x-3">
+                <input type="reset" value="Effacer" class="py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                <input type="submit" value="Enregistrer le receveur" class="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blood-red hover-blood-red focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+            </div>
+        </form>
+    </div>
 </body>
 </html>
