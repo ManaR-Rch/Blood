@@ -11,7 +11,8 @@
     <p><a href="donneurs">Retour à la liste</a></p>
     <p><a href="home">Retour à l'accueil</a></p>
     
-    <% String erreur = (String) request.getAttribute("erreur"); %>
+    <% String erreur = (String) request.getAttribute("erreur");
+%>
     <% if (erreur != null && !erreur.isEmpty()) { %>
         <div style="color: red; border: 1px solid red; padding: 10px; margin: 10px 0;">
             <strong>Erreurs :</strong><br>
@@ -21,6 +22,7 @@
     
     <form method="post" action="modifier-donneur">
         <input type="hidden" name="id" value="${donneur.id}">
+       
         <table>
             <tr>
                 <td><label for="nom">Nom :</label></td>
@@ -34,42 +36,64 @@
                 <td><label for="telephone">Téléphone :</label></td>
                 <td><input type="text" id="telephone" name="telephone" value="${donneur.telephone}" required></td>
             </tr>
+          
             <tr>
                 <td><label for="cin">CIN :</label></td>
                 <td><input type="text" id="cin" name="cin" value="${donneur.cin}" required></td>
             </tr>
             <tr>
                 <td><label for="groupeSanguin">Groupe Sanguin :</label></td>
+                
                 <td>
                     <select id="groupeSanguin" name="groupeSanguin" required>
                         <option value="${donneur.groupeSanguin}" selected>${donneur.groupeSanguin}</option>
-                        <option value="A+">A+</option>
-                        <option value="A-">A-</option>
-                        <option value="B+">B+</option>
-                        <option value="B-">B-</option>
-                        <option value="AB+">AB+</option>
-                        <option value="AB-">AB-</option>
-                        <option value="O+">O+</option>
-                        <option value="O-">O-</option>
+                        <option value="A+" <%= "A+".equals(donneur.getGroupeSanguin()) ? "hidden" : "" %>>A+</option>
+                        <option value="A-" <%= "A-".equals(donneur.getGroupeSanguin()) ? "hidden" : "" %>>A-</option>
+                        <option value="B+" <%= "B+".equals(donneur.getGroupeSanguin()) ? "hidden" : "" %>>B+</option>
+                        <option value="B-" <%= "B-".equals(donneur.getGroupeSanguin()) ? "hidden" : "" %>>B-</option>
+                        <option value="AB+" <%= "AB+".equals(donneur.getGroupeSanguin()) ? "hidden" : "" %>>AB+</option>
+                        <option value="AB-" <%= "AB-".equals(donneur.getGroupeSanguin()) ? "hidden" : "" %>>AB-</option>
+                        <option value="O+" <%= "O+".equals(donneur.getGroupeSanguin()) ? "hidden" : "" %>>O+</option>
+                        <option value="O-" <%= "O-".equals(donneur.getGroupeSanguin()) ? "hidden" : "" %>>O-</option>
                     </select>
                 </td>
             </tr>
+   
             <tr>
                 <td><label for="poids">Poids (kg) :</label></td>
                 <td><input type="number" id="poids" name="poids" step="0.1" min="30" max="200" value="${donneur.poids}" required></td>
             </tr>
+            
+            <tr>
+                <td><label for="age">Âge :</label></td>
+                <td><input type="number" id="age" name="age" min="16" max="120" value="${donneur.age}" required></td>
+            </tr>
+            <tr>
+                <td><label for="contreIndications">Contre-indications médicales :</label></td>
+                <td>
+                    <select id="contreIndications" name="contreIndications" required>
+                        <option value="${donneur.contreIndications}" selected>
+                            ${donneur.contreIndications ? 'Oui' : 'Non'}
+                        </option>
+                        <option value="false" <%= !donneur.getContreIndications() ? "hidden" : "" %>>Non</option>
+                        <option value="true" <%= donneur.getContreIndications() ? "hidden" : "" %>>Oui</option>
+                    </select>
+                </td>
+            </tr>
             <tr>
                 <td><label for="sexe">Sexe :</label></td>
+      
                 <td>
                     <select id="sexe" name="sexe" required>
                         <option value="${donneur.sexe}" selected>${donneur.sexe}</option>
-                        <option value="M">Masculin</option>
-                        <option value="F">Féminin</option>
+                        <option value="M" <%= "M".equals(donneur.getSexe()) ? "hidden" : "" %>>Masculin</option>
+                        <option value="F" <%= "F".equals(donneur.getSexe()) ? "hidden" : "" %>>Féminin</option>
                     </select>
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
+              
                     <input type="submit" value="Mettre à jour le donneur">
                     <input type="reset" value="Réinitialiser">
                 </td>
@@ -79,5 +103,3 @@
     
 </body>
 </html>
-
-

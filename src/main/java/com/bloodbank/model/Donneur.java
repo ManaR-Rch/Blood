@@ -35,7 +35,7 @@ public class Donneur {
     private Integer age;
 
     @Column(name = "contre_indications")
-    private boolean contreIndications;
+    private Boolean contreIndications;
     
     @Enumerated(EnumType.STRING)
     @Column(name = "statut_disponibilite")
@@ -146,10 +146,10 @@ public class Donneur {
     }
 
     public boolean getContreIndications() {
-        return contreIndications;
+        return contreIndications != null ? contreIndications : false;
     }
 
-    public void setContreIndications(boolean contreIndications) {
+    public void setContreIndications(Boolean contreIndications) {
         this.contreIndications = contreIndications;
     }
 
