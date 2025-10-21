@@ -35,6 +35,10 @@ public class Donneur {
     @Column(name = "statut_disponibilite")
     private StatutDisponibilite statutDisponibilite;
     
+    @ManyToOne
+    @JoinColumn(name = "receveur_id")
+    private Receveur receveurAssocie;
+    
     // Constructeur par défaut
     public Donneur() {
     }
@@ -125,6 +129,14 @@ public class Donneur {
     
     public void setStatutDisponibilite(StatutDisponibilite statutDisponibilite) {
         this.statutDisponibilite = statutDisponibilite;
+    }
+
+    public Receveur getReceveurAssocie() {
+        return receveurAssocie;
+    }
+
+    public void setReceveurAssocie(Receveur receveurAssocie) {
+        this.receveurAssocie = receveurAssocie;
     }
     
     // Enum pour le statut de disponibilité

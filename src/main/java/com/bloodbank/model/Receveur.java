@@ -33,6 +33,9 @@ public class Receveur {
     @Column(name = "etat")
     private Etat etat;
     
+    @OneToMany(mappedBy = "receveurAssocie")
+    private java.util.List<Donneur> donneursAssocies = new java.util.ArrayList<>();
+    
     // Constructeur par défaut
     public Receveur() {
     }
@@ -113,6 +116,14 @@ public class Receveur {
     
     public void setEtat(Etat etat) {
         this.etat = etat;
+    }
+
+    public java.util.List<Donneur> getDonneursAssocies() {
+        return donneursAssocies;
+    }
+
+    public void setDonneursAssocies(java.util.List<Donneur> donneursAssocies) {
+        this.donneursAssocies = donneursAssocies;
     }
     
     // Enum pour la priorité
