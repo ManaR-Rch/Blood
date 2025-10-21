@@ -61,7 +61,7 @@ public class AssociationService {
 
 	// Ne pas marquer directement le receveur comme SATISFAIT ici.
 	// L'état doit être vérifié en fonction du nombre requis de donneurs.
-	verifierEtatReceveur(receveur);
+	verifierSiReceveurSatisfait(receveur);
 
 		// Persister changements via DAOs. If one fails, we return false.
 		try {
@@ -76,34 +76,23 @@ public class AssociationService {
 				donneurDAO.update(donneur);
 			} catch (Exception ignored) {
 			}
-
-			/**
-			 * Vérifie le nombre de donneurs associés et met à jour l'état du receveur si besoin.
-			 */
-			private void verifierEtatReceveur(Receveur receveur) {
-				if (receveur == null) return;
-				int besoin = getBesoinPoches(receveur.getPriorite());
-				int donneursAssocies = (receveur.getDonneursAssocies() != null) ? receveur.getDonneursAssocies().size() : 0;
-
-				if (donneursAssocies >= besoin) {
-					receveur.setEtat(Receveur.Etat.SATISFAIT);
-				}
-			}
-
-			private int getBesoinPoches(Receveur.Priorite priorite) {
-				if (priorite == null) return 1;
-				switch (priorite) {
-					case NORMAL:
-						return 1;
-					case URGENT:
-						return 3;
-					case CRITIQUE:
-						return 4;
-					default:
-						return 1;
-				}
-			}
 			return false;
+		}
+	}
+
+	/**
+	 * Vérifie si le receveur a reçu le nombre requis de donneurs et marque SATISFAIT si c'est le cas.
+	 * Règle simple : NORMAL=1, URGENT=3, CRITIQUE=4
+	 */
+	private void verifierSiReceveurSatisfait(Receveur receveur) {
+		if (receveur == null) return;
+		int besoin = 1; // NORMAL = 1 poche
+		if (receveur.getPriorite() == Receveur.Priorite.URGENT) besoin = 3;
+		if (receveur.getPriorite() == Receveur.Priorite.CRITIQUE) besoin = 4;
+
+		int associes = (receveur.getDonneursAssocies() != null) ? receveur.getDonneursAssocies().size() : 0;
+		if (associes >= besoin) {
+			receveur.setEtat(Receveur.Etat.SATISFAIT);
 		}
 	}
 
